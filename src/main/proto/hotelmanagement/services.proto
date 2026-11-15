@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package hotelmanagement;
+
+import "hotelmanagement/util.proto";
+import "hotelmanagement/hotel.proto";
+import "hotelmanagement/guest.proto";
+import "hotelmanagement/stay.proto";
+import "hotelmanagement/bill.proto";
+
+option java_multiple_files = true;
+option java_package = "com.example.hotelmanagement.grpc";
+option java_outer_classname = "GrpcServices";
+
+service HotelService {
+  rpc CreateHotel (CreateHotelRequest) returns (HotelReply);
+  rpc ReadHotel (IdHotelRequest) returns (HotelReply);
+  rpc UpdateHotel (UpdateHotelRequest) returns (HotelReply);
+  rpc DeleteHotel (IdHotelRequest) returns (DeleteHotelReply);
+  rpc RegisterGuest (RegisterGuestRequest) returns (HotelReply);
+  rpc GetRegisteredGuests (IdHotelRequest) returns (ListGuestsReply);
+}
+
+service GuestService {
+  rpc CreateGuest (CreateGuestRequest) returns (GuestReply);
+  rpc ReadGuest (IdGuestRequest) returns (GuestReply);
+  rpc UpdateGuest (UpdateGuestRequest) returns (GuestReply);
+  rpc DeleteGuest (IdGuestRequest) returns (DeleteGuestReply);
+  rpc GetHotelsRegisteredAt (IdGuestRequest) returns (ListHotelsReply);
+  rpc GetStays (IdGuestRequest) returns (ListStaysReply);
+  rpc GetStaysAtHotel (IdGuestHotelRequest) returns (ListStaysReply);
+  rpc GetBills (IdGuestRequest) returns (ListBillsReply);
+  rpc GetBillsAtHotel (IdGuestHotelRequest) returns (ListBillsReply);
+  rpc GetBalance (IdGuestRequest) returns (GuestBalanceReply);
+  rpc GetBalanceAtHotel (IdGuestHotelRequest) returns (GuestBalanceReply);
+  rpc GetBalanceInQuarter (GuestQuarterRequest) returns (GuestBalanceReply);
+  rpc GetStayDurationInQuarter (GuestQuarterRequest) returns (GuestDurationReply);
+}
+
+service StayService {
+  rpc CreateStay (CreateStayRequest) returns (StayReply);
+  rpc ReadStay (IdStayRequest) returns (StayReply);
+  rpc UpdateStay (UpdateStayRequest) returns (StayReply);
+  rpc DeleteStay (IdStayRequest) returns (DeleteStayReply);
+}
+
+service BillService {
+  rpc CreateBill (CreateBillRequest) returns (BillReply);
+  rpc ReadBill (IdBillRequest) returns (BillReply);
+  rpc DeleteBill (IdBillRequest) returns (DeleteBillReply);
+}

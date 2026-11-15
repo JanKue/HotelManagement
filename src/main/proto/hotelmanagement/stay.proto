@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package hotelmanagement;
+
+import "hotelmanagement/util.proto";
+
+option java_multiple_files = true;
+option java_package = "com.example.hotelmanagement.grpc";
+option java_outer_classname = "GrpcStay";
+
+message StayReply {
+  int64 id = 1;
+  int64 guestId = 2;
+  int64 hotelId = 3;
+  CalendarDate beginDate = 4;
+  CalendarDate endDate = 5;
+  int64 duration = 6;
+}
+
+message IdStayRequest {
+  int64 id = 1;
+}
+
+message CreateStayRequest {
+  int64 guestId = 1;
+  int64 hotelId = 2;
+  CalendarDate beginDate = 3;
+  CalendarDate endDate = 4;
+}
+
+message UpdateStayRequest {
+  int64 id = 1;
+  CalendarDate beginDate = 2;
+  CalendarDate endDate = 3;
+}
+
+message DeleteStayReply {}
+
+message ListStaysReply {
+  int64 id = 1;
+  repeated StayReply stays = 2;
+}

@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package hotelmanagement;
+
+import "hotelmanagement/util.proto";
+
+option java_multiple_files = true;
+option java_package = "com.example.hotelmanagement.grpc";
+option java_outer_classname = "GrpcBill";
+
+message BillReply {
+  int64 id = 1;
+  int64 guestId = 2;
+  int64 hotelId = 3;
+  double billAmount = 4;
+}
+
+message IdBillRequest {
+  int64 id = 1;
+}
+
+message CreateBillRequest {
+  int64 guestId = 1;
+  int64 hotelId = 2;
+  repeated int64 stayIds = 3;
+}
+
+message DeleteBillReply {}
+
+message ListBillsReply {
+  int64 id = 1;
+  repeated BillReply bills = 2;
+}

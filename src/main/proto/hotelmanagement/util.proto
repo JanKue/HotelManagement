@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package hotelmanagement;
+
+option java_multiple_files = true;
+option java_package = "com.example.hotelmanagement.grpc";
+option java_outer_classname = "GrpcUtil";
+
+message CalendarDate {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day = 3;
+}
+
+message IdGuestHotelRequest {
+  int64 guestId = 1;
+  int64 hotelId = 2;
+}
